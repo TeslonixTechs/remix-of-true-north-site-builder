@@ -1,0 +1,165 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 2px;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-bone: var(--bone);
+  --color-maple: var(--maple);
+  --color-maple-dark: var(--maple-dark);
+  --color-muted-dark: var(--muted-dark);
+  --font-display: "Anton", "Archivo", sans-serif;
+  --font-ui: "Archivo", sans-serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  --radius: 2px;
+  --ink: oklch(0.19 0.008 45);
+  --ink-soft: oklch(0.25 0.01 45);
+  --bone: oklch(0.945 0.014 80);
+  --maple: oklch(0.52 0.21 26);
+  --maple-dark: oklch(0.43 0.19 22);
+  --muted-dark: oklch(0.76 0.02 80);
+
+  --background: var(--bone);
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --primary: var(--maple);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.9 0.014 80);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.9 0.014 80);
+  --muted-foreground: oklch(0.58 0.014 70);
+  --accent: var(--maple);
+  --accent-foreground: oklch(1 0 0);
+  --border: oklch(0.86 0.014 80);
+  --input: oklch(0.86 0.014 80);
+  --ring: var(--maple);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    line-height: 0.95;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--maple);
+    outline-offset: 2px;
+  }
+}
+
+@utility label-eyebrow {
+  font-family: var(--font-ui);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+}
+
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.875rem;
+  padding: 0.9rem 1.4rem;
+  border-radius: 2px;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+@utility btn-primary {
+  background-color: var(--maple);
+  color: #fff;
+  &:hover {
+    background-color: var(--maple-dark);
+    transform: translateY(-2px);
+  }
+}
+
+@utility btn-outline-light {
+  border: 2px solid color-mix(in oklab, #fff 45%, transparent);
+  color: #fff;
+  &:hover {
+    background-color: #fff;
+    color: var(--ink);
+    transform: translateY(-2px);
+  }
+}
+
+@utility btn-outline-dark {
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  &:hover {
+    background-color: var(--ink);
+    color: var(--bone);
+    transform: translateY(-2px);
+  }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
